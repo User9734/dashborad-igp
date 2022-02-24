@@ -124,7 +124,6 @@ export default {
             })
         },
         destroy(id) {
-            let app = this
             Swal.fire({
                 title: 'Voulez-vous supprimer ce produit?',
                 text: "cette action est irreversible!",
@@ -138,7 +137,6 @@ export default {
                 this.isLoading =  true
                 axios.delete(URL_COMMERCE_API+'products/'+id)
                 .then(response => {
-                    app.getProducts()
                     console.log(response.data)
                     this.stocks = response.data
                     this.isLoading =  false
@@ -147,6 +145,7 @@ export default {
                         'Le produit a été supprimée.',
                         'success'
                     )
+                    location.reload()
                 })
                 .catch(error => {
                     console.log(error)

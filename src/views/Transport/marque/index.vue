@@ -115,7 +115,6 @@ export default {
             })
         },
         destroy(id) {
-            let app = this
             Swal.fire({
                 title: 'Voulez-vous supprimer cette Marque?',
                 text: "cette action est irreversible!",
@@ -129,7 +128,6 @@ export default {
                     this.isLoading =  true
                     axios.delete(URL_TRANSPORT_API+'car-marques/'+id)
                     .then(response => {
-                        app.productmarques()
                         console.log(response.data)
                         this.stocks = response.data
                         this.isLoading =  false
@@ -138,6 +136,7 @@ export default {
                             'La categorie a été supprimée.',
                             'success'
                         )
+                        location.reload()
                     })
                     .catch(error => {
                         console.log(error)

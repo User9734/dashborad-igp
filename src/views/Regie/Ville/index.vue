@@ -139,7 +139,7 @@ export default {
                         'La region a été supprimée.',
                         'success'
                     )
-                    this.getVilles()
+                    location.reload()
                 })
                 .catch(error => {
                     console.log(error)

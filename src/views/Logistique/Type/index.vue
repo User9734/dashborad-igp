@@ -118,7 +118,6 @@ export default {
             })
         },
         destroy(id) {
-            let app = this
             Swal.fire({
                 title: 'Voulez-vous supprimer cette categorie?',
                 text: "cette action est irreversible!",
@@ -132,7 +131,6 @@ export default {
                 this.isLoading =  true
                 axios.delete(URL_LOGISTIQUE_API+'categories/'+id)
                 .then(response => {
-                    app.productTypes()
                     console.log(response)
                     if (!response.data.state) {
                         Swal.fire(
@@ -140,12 +138,14 @@ export default {
                             response.data.message,
                             'error'
                         )
+
                     }else{
                         Swal.fire(
                             'succès!',
                             'Categorie supprimé avec succès',
                             'success'
                         )
+                        location.reload()
                     }
                     this.stocks = response.data
                     this.isLoading =  false

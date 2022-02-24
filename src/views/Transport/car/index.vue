@@ -122,7 +122,6 @@ export default {
             })
         },
         destroy(id) {
-            let app = this
             Swal.fire({
                 title: 'Voulez-vous supprimer cette voiture?',
                 text: "cette action est irreversible!",
@@ -136,7 +135,6 @@ export default {
                     this.isLoading =  true
                     axios.delete(URL_TRANSPORT_API+'cars/'+id)
                     .then(response => {
-                        app.getCars()
                         console.log(response.data)
                         this.cars = response.data
                         this.isLoading =  false
@@ -145,6 +143,7 @@ export default {
                             'La voiture a été supprimée.',
                             'success'
                         )
+                        location.reload()
                     })
                     .catch(error => {
                         console.log(error)

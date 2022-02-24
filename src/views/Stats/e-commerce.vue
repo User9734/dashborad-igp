@@ -77,7 +77,7 @@
                                             <div class="style-text text-left mt-3">
                                                 <h5 class="mb-1"> {{ best.libelle.toUpperCase() }} </h5>
                                                 <p class="mb-0">Montant total : {{ best.amount }} FCFA</p>
-                                                <p class="mb-0">Nombre d'achat : {{ best.count }} FCFA</p>
+                                                <p class="mb-0">Nombre d'achat : {{ best.order_count }} </p>
                                             </div>
                                         </div>
                                     </div>

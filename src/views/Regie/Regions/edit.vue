@@ -99,7 +99,7 @@ export default {
         getPays() {
             // this.isLoading = true
             console.log(this.$route.params.id)
-            axios.get(URL_REGIE_API+'countries/')
+            axios.get(URL_REGIE_API+'countries')
             .then(response => {
                 console.log(response.data)
                 this.country = response.data

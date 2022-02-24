@@ -96,10 +96,11 @@ export default {
                 this.isLoading = false
             })
         },
+        
         getRegions() {
             // this.isLoading = true
             console.log(this.$route.params.id)
-            axios.get(URL_REGIE_API+'regions/')
+            axios.get(URL_REGIE_API+'regions')
             .then(response => {
                 console.log(response.data)
                 this.region = response.data

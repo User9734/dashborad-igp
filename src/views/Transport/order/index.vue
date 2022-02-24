@@ -118,7 +118,6 @@ export default {
             })
         },
         destroy(id) {
-            let app = this
             Swal.fire({
                 title: 'Voulez-vous supprimer cette commande?',
                 text: "cette action est irreversible!",
@@ -132,7 +131,6 @@ export default {
                 this.isLoading =  true
                 axios.delete(URL_TRANSPORT_API+'orders/'+id)
                 .then(response => {
-                    app.getOrders()
                     console.log(response.data)
                     this.orders = response.data
                     this.isLoading =  false
@@ -141,6 +139,7 @@ export default {
                         'La commande a été supprimée.',
                         'success'
                     )
+                    location.reload()
                 })
                 .catch(error => {
                     console.log(error)

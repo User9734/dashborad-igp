@@ -198,7 +198,7 @@ export default {
 
             axios.post(URL_TRANSPORT_API+'addFile', carData)
             .then(response => {
-                this.car = response.data
+                this.car = response.data.data
                 this.isLoading = false
                 this.getCar()
             })
@@ -214,7 +214,7 @@ export default {
             axios.get(URL_TRANSPORT_API+'cars/'+this.$route.params.id)
             .then(response => {
                 console.log(response.data)
-                this.car = response.data
+                this.car = response.data.data
                 this.images = response.data.photo.split(';')
                 this.images.pop()
                 this.isLoading = false

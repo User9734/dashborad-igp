@@ -9,8 +9,7 @@
 <script>
 const default_layout="default"
 export default {
-  name: 'App',
-
+  name: 'Home',
   computed:{
     layout(){
       return (this.$route.meta.layout || default_layout);

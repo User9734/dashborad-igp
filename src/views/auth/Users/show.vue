@@ -33,14 +33,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Ville *</label>
-                                                <input type="text" v-model="user.ville" class="form-control" placeholder="">
+                                                <input type="text" v-model="user.ville" class="form-control" placeholder="" readonly>
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div> 
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Commune *</label>
-                                                <input type="text" v-model="user.commune" class="form-control" placeholder="">
+                                                <input type="text" v-model="user.commune" class="form-control" placeholder="" readonly>
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>    

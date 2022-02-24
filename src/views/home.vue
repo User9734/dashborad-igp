@@ -69,13 +69,12 @@
                                     Debut : <input type="date" :max="periode.to" name="" id="" v-model="periode.from" class="form-control" @change="pivot">
                                 </div>
                                 <div class="col-lg-3 header-title" v-if="periode.from != null">
-                                    Fin : <input type="date" name="" :min="periode.from" id="" v-model="periode.to" class="form-control">
+                                    Fin : <input type="date" name="" :min="periode.from" id="" v-model="periode.to" class="form-control" @change="getSellByPeriode">
                                 </div>
-                                <button v-if="periode.to != null" class=" header-title col-lg-2 btn btn-primary mr-2" @click="getSellByPeriode">OK</button>
                             
                         </div>
                         <div class="card-body">
-                            <line-chart ></line-chart>
+                            <line-chart v-if="periode.to != null" :data="data" label="Nombre de ventes"  xtitle="Temps" ytitle="Nombre"></line-chart>
                         </div>
                     </div>
                 </div>
@@ -144,13 +143,13 @@
 <script>
 import axios from 'axios'
 import {URL_COMMERCE_API, URL_COMMERCE} from '@/config'
-import {LineChart} from '../charts'
 //import store from '@/store'
 
 export default {
-    components: LineChart,
     data(){
         return{
+            state: null,
+            data:[],
             param:{
                 status: 'new'
             },
@@ -186,10 +185,29 @@ export default {
             .then(function (reponse){
                 console.log('reponse', reponse.data);
                 app.bests = reponse.data
+                
             })
         },
         getSellByPeriode(){
-                localStorage.setItem('periode',JSON.stringify(this.periode))
+            let app = this
+                    axios.post(URL_COMMERCE_API+'getsellByPeriode', app.periode)
+            .then(function (reponse){
+                var keys 
+                var values 
+                console.log('rep',reponse.data);
+                reponse.data.stat.forEach((element) =>{
+                    keys = Object.keys(element)
+                    values = Object.values(element)
+                    for (let i = 0; i < keys.length; i++) {
+                    var m = keys[i].split('-')[0]
+                    var y = keys[i].split('-')[1]
+                    app.data.push(['20'+y+'-'+m+'-01',values[i]])
+                }
+                })
+                
+            })
+            console.log('data',app.data);
+            app.state = true
         },
         getBestViews(){
             let app = this
@@ -249,5 +267,4 @@ export default {
        
     },
 }
-export var periode 
 </script>

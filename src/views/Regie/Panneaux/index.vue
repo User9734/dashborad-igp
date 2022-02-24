@@ -23,10 +23,6 @@
                                     <th>Price</th>
                                     <th>Format</th>
                                     <th>Discount</th>
-                                    <th>Lat</th>
-                                    <th>Long</th>
-                                    <th>Url</th>
-                                    <th>Disponibilité</th>
                                     <th>Ville</th>
                                     <th v-if="perms.includes('delete-panel') || perms.includes('show-panel')">Actions</th> 
                                 </tr>
@@ -39,11 +35,6 @@
                                     <td>{{ pan.price }}</td> 
                                     <td>{{ pan.format }}</td> 
                                     <td>{{ pan.discount }}</td> 
-                                    <td>{{ pan.lat }}</td> 
-                                    <td>{{ pan.long }}</td> 
-                                    <td>{{ pan.url }}</td> 
-                                    <td v-if="pan.available==0"> Indisponible</td> 
-                                    <td v-else> Disponible</td> 
                                     <td v-if="pan.city"> {{ pan.city.libelle }} </td> 
                                     <td v-else>Ville introuvable</td>
                                     <td v-if="perms.includes('delete-panel') || perms.includes('show-panel')">
@@ -157,7 +148,7 @@ export default {
                         'Le panneau a été supprimée.',
                         'success'
                     )
-                    this.getPanels()
+                    location.reload()
                 })
                 .catch(error => {
                     console.log(error)

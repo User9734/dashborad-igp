@@ -173,9 +173,9 @@ export default {
             axios.put(URL_TRANSPORT_API+'cars/'+this.$route.params.id, this.car)
             .then(response => {
                 console.log(response.data)
-                this.car = response.data
+                this.car = response.data.data
                 this.isLoading = false
-                if (response.data.state) {
+                if (response.data.data) {
                     this.$router.push('/transport-cars')
                     Swal.fire(
                         'Operation Effectuée!',
@@ -195,8 +195,8 @@ export default {
             axios.get(URL_TRANSPORT_API+'cars/'+this.$route.params.id)
             .then(response => {
                 console.log(response.data)
-                this.car_marque_id = response.data.models.car_marque_id
-                this.car = response.data
+                this.car_marque_id = response.data.data.models.car_marque_id
+                this.car = response.data.data
                 this.onChangeCarMarques(this.car_marque_id)
                 this.isLoading = false
             })

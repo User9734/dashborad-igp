@@ -123,7 +123,6 @@ export default {
             })
         },
         destroy(id) {
-            let app = this
             Swal.fire({
                 title: 'Voulez-vous supprimer ce pays?',
                 text: "cette action est irreversible!",
@@ -137,7 +136,6 @@ export default {
                 this.isLoading =  true
                 axios.delete(URL_REGIE_API+'countries/'+id)
                 .then(response => {
-                    app.getCountries()
                     console.log(response.data)
                     this.countries = response.data
                     this.isLoading =  false
